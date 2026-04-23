@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 50%;
+            margin: auto;
+            gap: 50px;
+            font-size: 30px;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .btn-container .btn {
+            background: pink;
+            padding: 7px;
+            font-size: 20px;
+            border: 1px solid gray;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <section>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores veritatis aperiam excepturi illum dicta
+                obcaecati, aspernatur nam voluptatem sequi reprehenderit voluptas ut iure magni alias pariatur, odio
+                quis
+                quos eveniet quod ad, explicabo non. Voluptate quasi natus cupiditate, fuga repudiandae aliquid rem
+                totam
+                quis dolores voluptates doloribus facilis hic expedita. Cupiditate odio nesciunt at, voluptatem
+                voluptates
+                corrupti animi amet deserunt.</p>
+            <div class="btn-container">
+                <button class="btn" id="changeBg">Change Background</button>
+                <button class="btn" id="changeText">Change Text</button>
+            </div>
+
+        </section>
+    </div>
+
+    <script>
+        const changeBg = document.querySelector("#changeBg");
+        const changeText = document.querySelector('#changeText')
+        const container = document.querySelector('.container');
+
+        changeBg.addEventListener('click', () => {
+            console.log("sadas");
+            
+            const color = generateRandomColor();
+            console.log("color"+color);
+            
+          container.style.backgroundColor =color
+        })
+
+        changeText.addEventListener('click',()=>{
+            const color = generateRandomColor();
+
+            container.style.color = color;
+        })
+        function generateRandomColor() {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)]
+            }
+            return color;
+        }
+    </script>
+</body>
+
+</html>

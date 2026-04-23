@@ -1,0 +1,159 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+    flex-direction: column;
+    height: 100vh;
+    padding: 50px;
+    gap: 20px;
+}
+
+.container .noteBtn {
+    width: 8%;
+    padding: 8px;
+    border-radius: 4px;
+    border: none;
+    background: cornflowerblue;
+    font-size: 15px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.container .title {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.container .formSection {
+    background: rgba(0, 0, 0, 0.627);
+    width: 100%;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.container .formSection .formContainer {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+    background-color: rgb(192, 236, 255);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.container .formSection .formContainer .closeBtnContainer {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.container .formSection .formContainer form {
+    display: flex;
+    flex-direction: column;
+    /* width: 40%; */
+    /* background-color: pink; */
+}
+
+.container .formSection .formContainer form div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.container .formSection .formContainer form div label {
+    font-size: 20px;
+    color: rgb(46, 45, 45);
+}
+
+.container .formSection .formContainer form div input,
+.container .formSection .formContainer form div select,
+.container .formSection .formContainer form div textarea {
+    padding: 7px;
+    font-size: 15px;
+}
+
+.container .formSection .formContainer form .addBtn {
+    width: 30%;
+    padding: 7px;
+    font-size: larger;
+    background: cornflowerblue;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    color: white;
+}
+
+.container .noteSection {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+    margin-top: 30px;
+}
+
+.container .noteSection .note {
+    background: rgb(240, 128, 191);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    border-radius: 5px;
+    color: white;
+}
+
+.container .noteSection .note .noteTitle {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid white;
+    font-size: 21px;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+
+.container .noteSection .note .noteDesc {
+    display: flex;
+    flex-direction: column;
+    font-size: 17px;
+    border-radius: 5px;
+    min-height: 200px;
+}
+
+.container .noteSection .note .subInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid white;
+    padding-top: 5px;
+}
+
+.container .noteSection .note .subInfo .noteBtns {
+    display: flex;
+    gap: 11px;
+    font-size: 17px;
+}
+
+.container .noteSection .note .subInfo .noteBtns .delete {
+    color: red;
+    cursor: pointer;
+}
+
+.container .noteSection .note .subInfo .noteBtns .edit {
+    color: green;
+    cursor: pointer;
+}

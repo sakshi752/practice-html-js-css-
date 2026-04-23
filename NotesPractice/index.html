@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/5d20fefed5.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <!-- <div class=""> -->
+        <section class="title">Notes App</section>
+        <button class="noteBtn toggle">Add a note!</button>
+
+        <section class="formSection">
+            <div class="formContainer">
+                <div class="closeBtnContainer">
+                    <button class="toggle noteBtn"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+
+                <form action="" id="addNote">
+                    <div>
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title">
+                    </div>
+                    <div>
+                        <label for="category">
+                            category
+                        </label>
+                        <select name="category" id="category">
+                            <option value="0">career</option>
+                            <option value="1">health</option>
+                            <option value="2">hobbies</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="date">Date</label>
+                        <input type="date" name="date" id="date">
+                    </div>
+                    <div>
+                        <label for="desc">description</label>
+                        <textarea name="desc" id="desc"></textarea>
+                    </div>
+                    <button type="submit" class="addBtn">Add</button>
+                </form>
+            </div>
+
+        </section>
+
+        <section class="noteSection" id="noteSection">
+
+            <!-- <div class="note">
+                <div class="noteTitle">
+                    <p>Note1</p>
+                    <span>11/04/2026</span>
+                </div>
+                <div class="noteDesc">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi, itaque.</p>
+                </div>
+                <div class="subInfo">
+                    <div  class="noteBtns">
+                        <span class="delete"><i class="fa-solid fa-trash"></i></span>
+                        <span class="edit"><i class="fa-solid fa-pen-to-square"></i></span>
+                    </div>
+                    <span>category</span>
+                </div>
+            </div> -->
+
+        </section>
+
+    </div>
+    <script src="index.js"></script>
+</body>
+
+</html>

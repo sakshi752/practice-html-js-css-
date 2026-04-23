@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 40px;
+            /* height: 100vh; */
+        }
+
+        .container h3 {
+            padding-bottom: 15px;
+            font-size: 40px;
+
+        }
+
+        .container form {
+            background: pink;
+            padding: 30px;
+            border-radius: 10px;
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .container form input {
+            padding: 5px;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .container form button {
+            background-color: black;
+            border: none;
+            padding: 4px 15px;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .container ul {
+            list-style-type: none;
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .container ul li {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-size: 25px;
+
+        }
+
+
+        .container ul li div {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+        }
+
+        .container ul li div span {
+            color: white;
+            background: red;
+            padding: 5px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 15%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container ul li div .edit {
+            background-color: green;
+        }
+    </style>
+    <script src="https://kit.fontawesome.com/5d20fefed5.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <section class="container">
+        <div>
+            <h3>Practice todo</h3>
+        </div>
+        <div>
+            <form action="" id="todoForm">
+                <input type="text" name="todo" id="todo" placeholder="enter todo">
+                <button>Add</button>
+            </form>
+        </div>
+        <div>
+            <ul class="todoList" id="todoList">
+
+            </ul>
+        </div>
+    </section>
+    <script>
+        const form = document.querySelector("#todoForm");
+        const input = document.querySelector("#todo");
+        const todoList = document.querySelector("#todoList");
+        let editTodo = null;
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const todo = input.value;
+            if (todo.trim() === "") {
+                alert("enter todo feild")
+                return;
+            }
+
+            if (editTodo) {
+                editTodo.firstElementChild.innerText = todo.trim();
+                editTodo = null;
+                form.querySelector("button").innerText = "Add";
+            } else {
+                addTodo(todo.trim())
+
+            }
+            input.value = " "
+        })
+
+        const addTodo = (todo) => {
+            const li = document.createElement("li");
+            const btnHolder = document.createElement("div");
+            const span = document.createElement("span");
+            const editSpan = document.createElement("span");
+            const textSpan = document.createElement("span");
+            span.innerText = "x";
+            editSpan.innerHTML = '<i class="fa-solid fa-pen-to-square"></i>'
+            editSpan.classList.add("edit");
+            textSpan.innerText = todo;
+            textSpan.classList.add("text")
+
+
+            btnHolder.appendChild(editSpan);
+            btnHolder.appendChild(span);
+            li.appendChild(textSpan)
+            li.appendChild(btnHolder)
+
+            todoList.appendChild(li);
+        }
+
+        todoList.addEventListener("click", (e) => {
+            const span = e.target.closest("span");
+            if (!span) return;
+            const li = span.closest("li");
+            if (span.classList.contains("edit")) {
+                const todoText = li.firstElementChild.innerText;
+                input.value = todoText
+                form.querySelector("button").innerText = "Edit";
+                editTodo = li;
+            } else {
+                li.remove();
+            }
+        });
+    </script>
+</body>
+
+</html>

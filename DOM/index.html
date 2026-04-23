@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Explain DOM</h1>
+    <ul>
+        <li>The DOM (Document Object Model) in JavaScript is basically a way for JavaScript to interact with a web page.
+        </li>
+        <li>When a browser loads a webpage, it takes the HTML and turns it into a tree-like structure. That structure is
+            called the DOM.</li>
+        <li>Your HTML page → becomes a tree of objects in memory → JavaScript can access and change it with the help of
+            DOM.</li>
+        <li>
+            <!-- <h1>Hello</h1>
+            <p>Welcome</p> -->
+
+            DOM representation:
+
+            Document
+            ├── h1 → "Hello"
+            └── p → "Welcome"
+        </li>
+    </ul>
+
+    <h1>Explain DOM Tree</h1>
+    <ul>
+        <li>The DOM Tree is the way a browser represents an HTML page internally as a hierarchical tree structure.</li>
+        <li>Document(Root) is starting point of the DOM and it represents the entrire page</li>
+        <li>Element nodes are html,body,o,h1 etc</li>
+        <li>Text Nodes are the text inside elements</li>
+    </ul>
+    <h1>explain document object</h1>
+    <ul>
+        <li>The document object in JavaScript is the entry point to the DOM (Document Object Model).</li>
+        <li>It represents the entire web page and gives you access to all HTML elements so you can read, change, or
+            manipulate them. when browser loads an HTML page it creates a global object and it is called document.</li>
+        <li>document = the web page itself as an object</li>
+    </ul>
+    <h1>Selecting Elements</h1>
+    <ul>
+        <li>getElementById (fastest & most common for single element)</li>
+        <li>getElementsByClassName
+            <ul>
+                <li>Returns HTMLCollection (like array but not real array)</li>
+                <li>
+                    Multiple elements possible
+                </li>
+            </ul>
+        </li>
+        <li>getElementsByTagName
+            <ul>
+                <li>Selects by tag name (div, p, h1)</li>
+                <li>Returns HTMLCollection</li>
+            </ul>
+        </li>
+        <li>
+            querySelector
+            <ul>
+                <li>
+                    Uses CSS selectors
+                </li>
+                <li>
+                    Returns first matching element only
+                </li>
+            </ul>
+        </li>
+        <li>
+            querySelectorAll
+            <ul>
+                <li>
+                    Returns NodeList
+                </li>
+                <li>
+                    Selects ALL matching elements
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <button class="btn" id="btn">hello</button>
+    <br>
+
+    <!-- querySelectorAll -->
+    <button class="btns">1</button>
+    <button class="btns">2</button>
+    <button class="btns">3</button>
+    <button class="btns">4</button>
+    <button class="btns">5</button>
+    <script>
+        const btn = document.querySelector('.btn');
+        btn.addEventListener('click', () => {
+            console.log("clicked");
+
+        })
+
+        const btns = document.querySelectorAll('.btns')
+        console.log(btns)
+    </script>
+</body>
+
+</html>
