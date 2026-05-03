@@ -3,7 +3,7 @@ const formSection = document.querySelector('.formSection');
 const form = document.querySelector('#addNote');
 const noteSection = document.querySelector('#noteSection');
 let notes = [];
-let editTodo = null;
+let editNoteID = null;
 
 window.onload = () => {
     notes = JSON.parse(localStorage.getItem("notes")) || [];
@@ -13,7 +13,13 @@ window.onload = () => {
 
 // for modal logic
 toggleBtns.forEach(btn => {
+
     btn.addEventListener('click', () => {
+        if (editNoteID) {
+            form.reset();
+            editNoteID = null
+        }
+
         if (formSection.style.display === "none") {
             formSection.style.display = "flex";
         } else {
@@ -25,16 +31,21 @@ toggleBtns.forEach(btn => {
 formSection.addEventListener("click", (e) => {
     if (e.target === formSection) {
         formSection.style.display = "none";
+        if (editNoteID) {
+            form.reset();
+            editNoteID = null
+        }
     }
 });
 
 // on submit
 form.addEventListener("submit", (e) => {
     e.preventDefault();
-    const title = document.querySelector('#title').value;
-    const category = document.querySelector('#category').value;
-    const date = document.querySelector('#date').value;
-    let desc = document.querySelector('#desc').value;
+    const title = form.querySelector('#title').value;
+    const category = form.querySelector('#category').value;
+    const date = form.querySelector('#date').value;
+    let desc = form.querySelector('#desc').value;
+    const formattedDate = new Date(date).toISOString();
 
     if (title.trim() === "" || date.trim() === "") {
         alert("Enter fields properly")
@@ -43,10 +54,29 @@ form.addEventListener("submit", (e) => {
     if (desc.trim() === "") {
         desc = "No description for this note";
     }
-    const formattedDate = new Date(date).toLocaleDateString();
+
     const categories = ["career", "health", "hobbies"];
 
-    if (editTodo) {
+    if (editNoteID) {
+        notes = notes.map(note => {
+            if (note.id == editNoteID) {
+                return {
+                    ...note,
+                    title,
+                    category: categories[category],
+                    date: formattedDate,
+                    desc
+                };
+            }
+            return note;
+        });
+
+        addToLocalStorage();
+        renderNote();
+
+        editNoteID = null;
+        form.querySelector(".addBtn").innerText = "Add";
+
 
     } else {
         addToArray(title, categories[category], formattedDate, desc);
@@ -89,7 +119,7 @@ const createNote = (noteData) => {
 
     noteTitle.innerHTML = `
         <p>${noteData.title}</p>
-        <span>${noteData.date}</span>
+        <span>${new Date(noteData.date).toLocaleDateString()}</span>
     `;
 
 
@@ -142,6 +172,19 @@ noteSection.addEventListener("click", (e) => {
         addToLocalStorage();
         renderNote();
     } else {
-        // edit note
+        const note = notes.find(note => note.id == id);
+        editNoteID = id;
+       
+        form.querySelector("#title").value = note.title;
+        form.querySelector("#category").value = note.category == "career" ? 0 : note.category == "health" ? 1 : 2;
+        const d = new Date(note.date);
+        form.querySelector("#date").value = d.toISOString().split("T")[0];
+        form.querySelector("#desc").value = note.desc;
+
+        formSection.style.display = "flex";
+        form.querySelector(".addBtn").innerText = "Edit";
+
+
     }
 })
+
